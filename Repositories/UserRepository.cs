@@ -7,7 +7,7 @@ namespace Blog.Repositories
     public class UserRepository
     {
         // It isn't interesting to us pass a conection parameter in each class
-        // so we remove it from the methos and pass as a private variable
+        // so we remove it from the methods and pass as a private variable
         private readonly SqlConnection _connection; // private variable to work with the connection inside the class     
         public UserRepository(SqlConnection connection) => _connection = connection; // constructor method receive the external connection
 
