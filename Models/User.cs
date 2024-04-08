@@ -1,19 +1,14 @@
-using System.ComponentModel.DataAnnotations.Schema;
+using Dapper.Contrib.Extensions;
+using TableAttribute = Dapper.Contrib.Extensions.TableAttribute;
 
 namespace Blog.Models
 {
     [Table("[User]")]
     public class User
     {
-        public User(int id, string name, string email, string passwordHash, string bio, string image, string slug)
+        public User()
         {
-            Id = id;
-            Name = name;
-            Email = email;
-            PasswordHash = passwordHash;
-            Bio = bio;
-            Image = image;
-            Slug = slug;
+
             Roles = new List<Role>();
         }
 
@@ -30,6 +25,8 @@ namespace Blog.Models
         public string Image { get; set; }
 
         public string Slug { get; set; }
+
+        [Write(false)]
         public List<Role> Roles { get; set; }
     }
 }
