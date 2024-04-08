@@ -17,12 +17,8 @@ namespace Blog.Repositories
         public IEnumerable<T> Get() => _connection.GetAll<T>();
         public T Get(int id) => _connection.Get<T>(id); // read one user if receive a id
         public void Create(T model) => _connection.Insert<T>(model); // create a new user when receive the user's props
-
         public void Update(T model) => _connection.Update<T>(model);// update user
-
-
         public void Delete(T model) => _connection.Delete<T>(model);// delete user
-
         public void Delete(int id) // delete user using just the id
         {
             if (id != 0)
