@@ -14,20 +14,20 @@ namespace Blog
         {
             var connection = new SqlConnection(CONNECTION_STRING);
             connection.Open();
-            ReadUsers(connection);
+            ReadUsersWithRoles(connection);
+            // CreateUser(connection);
             // ReadRoles(connection);
             // ReadTags(connection);
-            // CreateUser(connection);
             // ReadUser();
             // CreateUser();
             // UpdateUser();
             // DeleteUser();
             connection.Close();
         }
-        public static void ReadUsers(SqlConnection connection)
+        public static void ReadUsersWithRoles(SqlConnection connection)
         {
-            var repository = new Repository<User>(connection);
-            var items = repository.Get();
+            var repository = new UserRepository(connection);
+            var items = repository.GetWithRoles();
             foreach (var item in items)
             {
                 Console.WriteLine(item.Name);
@@ -37,6 +37,22 @@ namespace Blog
                 }
             }
         }
+
+        public static void CreateUser(SqlConnection connection)
+        {
+            var user = new User()
+            {
+                Name = "João Xarrua",
+                Email = "joaoxarrua@balta.com",
+                PasswordHash = "HASH",
+                Bio = "Maior de todos",
+                Image = "https://",
+                Slug = "joao-xarrua"
+            };
+            var repository = new Repository<User>(connection);
+            repository.Create(user);
+        }
+
         public static void ReadRoles(SqlConnection connection)
         {
             var repository = new Repository<Role>(connection);
@@ -51,23 +67,5 @@ namespace Blog
             foreach (var item in items)
                 Console.WriteLine(item.Name);
         }
-
-
-
-
-        // public static void CreateUser(SqlConnection connection)
-        // {
-        //     var repository = new Repository<User>(connection);
-        //     var user = new User(
-        //         "João Xarrua",
-        //         "joao@gmail.com",
-        //         "123",
-        //         "Novo usuarios joao",
-        //         "https://1",
-        //         "joao-xarrua"
-        //     );
-        //     repository.Create(user);
-        //     Console.WriteLine("Usuário inserido");
-        // }
     }
 }
