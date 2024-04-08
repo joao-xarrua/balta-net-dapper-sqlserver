@@ -5,6 +5,18 @@ namespace Blog.Models
     [Table("[User]")]
     public class User
     {
+        public User(int id, string name, string email, string passwordHash, string bio, string image, string slug)
+        {
+            Id = id;
+            Name = name;
+            Email = email;
+            PasswordHash = passwordHash;
+            Bio = bio;
+            Image = image;
+            Slug = slug;
+            Roles = new List<Role>();
+        }
+
         public int Id { get; set; }
 
         public string Name { get; set; }
@@ -18,5 +30,6 @@ namespace Blog.Models
         public string Image { get; set; }
 
         public string Slug { get; set; }
+        public List<Role> Roles { get; set; }
     }
 }
