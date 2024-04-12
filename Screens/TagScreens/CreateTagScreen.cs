@@ -33,7 +33,7 @@ namespace Blog.Screens.TagScreens
             }
             catch (System.Exception ex)
             {
-                Console.WriteLine("Não foi possível salvar a mensagem");
+                Console.WriteLine("Não foi possível salvar a tag");
                 Console.WriteLine(ex.Message);
             }
         }
